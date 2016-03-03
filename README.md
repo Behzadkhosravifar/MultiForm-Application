@@ -1,2 +1,4 @@
-# MultiForm-Application
-One application for manage multiple plugin form which any form is a single application.
+## MultiForm Application
+-------------------------
+
+A main application for management of multiple forms which forms are alone a full application.
