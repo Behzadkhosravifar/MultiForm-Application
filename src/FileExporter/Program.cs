@@ -9,6 +9,10 @@ namespace FileExporter
 {
     static class Program
     {
+        public static ConnectionManager Sale;
+        public static ConnectionManager SaleCore;
+        public static ConnectionManager OldSale;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -47,7 +51,11 @@ namespace FileExporter
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName) + ".config";
             var data = File.ReadAllText(path);
             ConnectionManager.LoadFromXml(data);
-            ConnectionManager.SetToDefaultConnection("DefaultConnection"); // local
+            ConnectionManager.SetToDefaultConnection("SaleCore"); // local
+
+            Sale = ConnectionManager.Find("Sale");
+            SaleCore = ConnectionManager.Find("SaleCore");
+            OldSale = ConnectionManager.Find("OldSale");
             // ---------------------------------------------------------------------------------------------------------------
         }
 

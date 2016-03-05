@@ -117,31 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cdcode" xml:space="preserve">
-    <value>کد محصول قدیم</value>
+  <data name="BtnAbort" xml:space="preserve">
+    <value>Прервать</value>
   </data>
-  <data name="invoiceid" xml:space="preserve">
-    <value>شماره فاکتور</value>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Отмена</value>
   </data>
-  <data name="isbonus" xml:space="preserve">
-    <value>جایزه دار؟</value>
+  <data name="BtnIgnore" xml:space="preserve">
+    <value>Игнорировать</value>
   </data>
-  <data name="priceid" xml:space="preserve">
-    <value>شناسه قیمت</value>
+  <data name="BtnNo" xml:space="preserve">
+    <value>Нет</value>
   </data>
-  <data name="productcode" xml:space="preserve">
-    <value>کد محصول</value>
+  <data name="BtnOK" xml:space="preserve">
+    <value>ОК</value>
   </data>
-  <data name="qty" xml:space="preserve">
-    <value>تعداد</value>
+  <data name="BtnRetry" xml:space="preserve">
+    <value>Повторите</value>
   </data>
-  <data name="row" xml:space="preserve">
-    <value>ردیف</value>
-  </data>
-  <data name="unitid" xml:space="preserve">
-    <value>شناسه</value>
-  </data>
-  <data name="whcode" xml:space="preserve">
-    <value>کد انبار</value>
+  <data name="BtnYes" xml:space="preserve">
+    <value>Да</value>
   </data>
 </root>

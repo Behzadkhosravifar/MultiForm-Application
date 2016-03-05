@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExporter", "FileExporte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoManager", "AdoManager\AdoManager.csproj", "{C6A52698-9C02-49F4-B848-CDFFC6562215}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.HintTextBox", "Windows.Forms.HintTextBox\Windows.Forms.HintTextBox.csproj", "{05FAAA9A-132B-4057-A171-C0E184D399A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlurMessageBox", "BlurMessageBox\BlurMessageBox.csproj", "{036659E4-59F2-4485-BFED-3627ECEA2FBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C6A52698-9C02-49F4-B848-CDFFC6562215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6A52698-9C02-49F4-B848-CDFFC6562215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6A52698-9C02-49F4-B848-CDFFC6562215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05FAAA9A-132B-4057-A171-C0E184D399A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05FAAA9A-132B-4057-A171-C0E184D399A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05FAAA9A-132B-4057-A171-C0E184D399A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05FAAA9A-132B-4057-A171-C0E184D399A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036659E4-59F2-4485-BFED-3627ECEA2FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036659E4-59F2-4485-BFED-3627ECEA2FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036659E4-59F2-4485-BFED-3627ECEA2FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036659E4-59F2-4485-BFED-3627ECEA2FBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
