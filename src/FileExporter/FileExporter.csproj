@@ -59,6 +59,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExtensionsFramework.cs" />
+    <Compile Include="PluginForms\BankAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PluginForms\BankAccounts.Designer.cs">
+      <DependentUpon>BankAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="PluginForms\InWay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,8 +80,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginForms\BankAccounts.resx">
+      <DependentUpon>BankAccounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PluginForms\InWay.resx">
       <DependentUpon>InWay.cs</DependentUpon>

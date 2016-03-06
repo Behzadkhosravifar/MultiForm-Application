@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InWay));
             this.btnShow = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.gbInWays = new System.Windows.Forms.GroupBox();
@@ -166,10 +167,11 @@
             this.ClientSize = new System.Drawing.Size(938, 464);
             this.Controls.Add(this.panelMain);
             this.Font = new System.Drawing.Font("B Nazanin", 11F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "InWay";
             this.RightToLeftLayout = true;
-            this.Text = "خروج فایل توراهی";
+            this.Text = "توراهی";
             this.panelMain.ResumeLayout(false);
             this.gbInWays.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();

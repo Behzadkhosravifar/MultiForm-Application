@@ -36,16 +36,19 @@
             this.flpMainForm.AutoScroll = true;
             this.flpMainForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMainForm.Location = new System.Drawing.Point(0, 0);
+            this.flpMainForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.flpMainForm.Name = "flpMainForm";
-            this.flpMainForm.Size = new System.Drawing.Size(343, 443);
+            this.flpMainForm.Size = new System.Drawing.Size(330, 213);
             this.flpMainForm.TabIndex = 1;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 443);
+            this.ClientSize = new System.Drawing.Size(330, 213);
             this.Controls.Add(this.flpMainForm);
+            this.Font = new System.Drawing.Font("B Nazanin", 10F);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.Text = "فرم خروج فایل";
             this.ResumeLayout(false);

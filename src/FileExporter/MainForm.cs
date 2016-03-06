@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace FileExporter
 {
@@ -20,10 +21,11 @@ namespace FileExporter
             // 
             button.Location = new System.Drawing.Point(3, 3);
             button.Name = "button_" + form.Name;
-            button.Size = new System.Drawing.Size(135, 135);
+            button.Size = new System.Drawing.Size(100, 80);
             button.TabIndex = 1;
             button.Text = form.Text;
             button.Image = form.Icon.ToBitmap();
+            button.ImageAlign = ContentAlignment.TopCenter;
             button.Click += (s, e) => form.ShowDialog(this);
             button.Enabled = form.Enabled;
             button.TextAlign = ContentAlignment.BottomCenter;

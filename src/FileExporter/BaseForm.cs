@@ -14,5 +14,18 @@ namespace FileExporter
         {
             Application.Idle -= OnLoad;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // BaseForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Font = new System.Drawing.Font("B Nazanin", 9F);
+            this.Name = "BaseForm";
+            this.ResumeLayout(false);
+
+        }
     }
 }
