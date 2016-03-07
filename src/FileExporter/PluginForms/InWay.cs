@@ -4,18 +4,19 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using AdoManager;
 using BlurMessageBox;
-using Microsoft.Win32;
 using Newtonsoft.Json;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace FileExporter.PluginForms
 {
     public partial class InWay : BaseForm
     {
-        private DataTable _dt;
+        
         private bool _inProcess = false;
-        private readonly object _syncObj = new object();
 
 
 
@@ -29,7 +30,8 @@ namespace FileExporter.PluginForms
         {
             try
             {
-                lock (_syncObj)
+                Cursor = Cursors.WaitCursor;
+                lock (SyncObj)
                 {
                     if (_inProcess) return;
                     _inProcess = true;
@@ -43,8 +45,8 @@ namespace FileExporter.PluginForms
                     await
                         Program.SaleCore.SqlConn.ExecuteReaderAsync("sp_GetOldSaleInvoiceDetails", parameters,
                             commandType: CommandType.StoredProcedure);
-                _dt = new DataTable();
-                _dt.Load(source);
+                SourceTable = new DataTable();
+                SourceTable.Load(source);
                 SetGridData();
 
                 //
@@ -56,6 +58,7 @@ namespace FileExporter.PluginForms
             }
             finally
             {
+                Cursor = Cursors.Default;
                 _inProcess = false;
             }
         }
@@ -63,7 +66,7 @@ namespace FileExporter.PluginForms
         {
             try
             {
-                lock (_syncObj)
+                lock (SyncObj)
                 {
                     if (_inProcess) return;
                     _inProcess = true;
@@ -71,7 +74,7 @@ namespace FileExporter.PluginForms
 
                 if (!ValidateInputs()) return;
 
-                var data = JsonConvert.SerializeObject(_dt, Formatting.Indented);
+                var data = JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
 
                 await SaveAsync(data, true);
             }
@@ -88,7 +91,7 @@ namespace FileExporter.PluginForms
         {
             try
             {
-                lock (_syncObj)
+                lock (SyncObj)
                 {
                     if (_inProcess) return;
                     _inProcess = true;
@@ -106,7 +109,7 @@ namespace FileExporter.PluginForms
                 var result = ofd.ShowDialog();
                 if (result.HasValue && result.Value)
                 {
-                    _dt = await ReadAsync(ofd.FileName);
+                    SourceTable = await ReadAsync(ofd.FileName);
                     SetGridData();
                 }
 
@@ -139,8 +142,8 @@ namespace FileExporter.PluginForms
         }
         private void SetGridData()
         {
-            dgvMain.DataSource = _dt;
-            var count = _dt.Rows.Count;
+            dgvMain.DataSource = SourceTable;
+            var count = SourceTable.Rows.Count;
             gbInWays.Text = string.Format("جزئیات توراهی (تعداد: {0})", count);
         }
 

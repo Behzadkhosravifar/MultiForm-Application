@@ -37,9 +37,9 @@ namespace FileExporter
         }
 
 
-        protected override void OnLoad(object sender, EventArgs e)
+        protected override void OnLoaded(object sender, EventArgs e)
         {
-            base.OnLoad(sender, e);
+            base.OnLoaded(sender, e);
 
             var forms = Program.GetAllForms();
             foreach (var form in forms)
