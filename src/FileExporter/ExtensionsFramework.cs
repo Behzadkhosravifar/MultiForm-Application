@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdoManager;
 using Newtonsoft.Json;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace FileExporter
 {
@@ -43,33 +42,63 @@ namespace FileExporter
             }
             return dt;
         }
+        
+        public static string GetSaveFilePath(string name, string id)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                FileName = string.Format("{0}_{1}_{2}.dbi", name, GetPersianDate(), id ?? Math.Abs(DateTime.Now.GetHashCode()).ToString()),
+                DefaultExt = ".dbi",
+                Title = string.Format("Save {0} file", name.SplitWords()),
+                Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
+                FilterIndex = 2
+            };
 
-        public static async Task SaveAsync(this string data, string name, string id, bool isEncrypt = false)
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                return sfd.FileName;
+            }
+
+            return null;
+        }
+
+        public static string GetOpenFilePath(string name)
+        {
+            var ofd = new OpenFileDialog
+            {
+                FileName = string.Format("{0}_{1}_id.dbi", name, GetPersianDate()),
+                DefaultExt = ".dbi",
+                Title = string.Format("Read {0} file", name.SplitWords()),
+                Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
+                FilterIndex = 2
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                return ofd.FileName;
+            }
+
+            return null;
+        }
+
+        public static async Task SaveJsonAsync(this string data, string path, bool isEncrypt = false)
         {
             if (isEncrypt)
             {
                 data = "#" + data.Encrypt();
             }
 
-            Microsoft.Win32.SaveFileDialog sfd = new SaveFileDialog
-            {
-                FileName = string.Format("{0}_{1}_{2}.dbi", name, GetPersianDate(), id ?? Math.Abs(DateTime.Now.GetHashCode()).ToString()),
-                DefaultExt = ".dbi",
-                Title = "ذخیره فایل",
-                Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
-                FilterIndex = 2
-            };
+            if (string.IsNullOrEmpty(path)) return;
 
-            var result = sfd.ShowDialog();
-            if (result.HasValue && result.Value)
-            {
-                using (StreamWriter sw = new StreamWriter(sfd.FileName))
-                    await sw.WriteAsync(data);
-            }
+            using (StreamWriter sw = new StreamWriter(path))
+                await sw.WriteAsync(data);
+
         }
 
-        public static async Task<DataTable> ReadAsync(this string path)
+        public static async Task<DataTable> ReadJsonFileAsync(this string path)
         {
+            if (string.IsNullOrEmpty(path)) return new DataTable();
+
             Char[] buffer;
             using (StreamReader sr = new StreamReader(path))
             {
@@ -98,6 +127,11 @@ namespace FileExporter
             var result = persianDate.ToString("yyyy.MM.dd");
 
             return result;
+        }
+
+        public static string SplitWords(this string sentence)
+        {
+            return sentence.Aggregate("", (current, ch) => current + (char.IsLower(ch) ? ch.ToString() : " " + ch));
         }
     }
 }

@@ -1,21 +1,15 @@
 ﻿using System;
 using Dapper;
 using System.Data;
-using System.Globalization;
-using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AdoManager;
 using BlurMessageBox;
 using Newtonsoft.Json;
-using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace FileExporter.PluginForms
 {
     public partial class InWay : BaseForm
     {
-        private bool _inProcess = false;
+        private bool _inProcess;
 
         public InWay()
         {
@@ -72,7 +66,9 @@ namespace FileExporter.PluginForms
 
                 var data = JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
 
-                await data.SaveAsync("inWay", txtInvoiceId.Value, true);
+                var path = ExtensionsFramework.GetSaveFilePath("InWay", txtInvoiceId.Value);
+
+                await data.SaveJsonAsync(path, true);
             }
             catch (Exception ex)
             {
@@ -93,21 +89,10 @@ namespace FileExporter.PluginForms
                     _inProcess = true;
                 }
 
-                var ofd = new OpenFileDialog
-                {
-                    FileName = "inWay.dbi",
-                    DefaultExt = ".dbi",
-                    Title = "خواندن فایل توراهی",
-                    Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
-                    FilterIndex = 2
-                };
-
-                var result = ofd.ShowDialog();
-                if (result.HasValue && result.Value)
-                {
-                    SourceTable = await ofd.FileName.ReadAsync();
-                    SetGridData();
-                }
+                var path = ExtensionsFramework.GetOpenFilePath("InWay");
+                
+                SourceTable = await path.ReadJsonFileAsync();
+                SetGridData();
 
                 //
                 dgvMain.SetHeaderNames();

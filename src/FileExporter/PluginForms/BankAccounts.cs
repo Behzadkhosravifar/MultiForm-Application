@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using BlurMessageBox;
 using Dapper;
 using Newtonsoft.Json;
-using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace FileExporter.PluginForms
 {
@@ -55,7 +54,9 @@ namespace FileExporter.PluginForms
             {
                 var data = JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
 
-                await data.SaveAsync("bankAccounts", null, true);
+                var path = ExtensionsFramework.GetSaveFilePath("BankAccounts", null);
+
+                await data.SaveJsonAsync(path, true);
             }
             catch (Exception ex)
             {
@@ -67,21 +68,10 @@ namespace FileExporter.PluginForms
         {
             try
             {
-                var ofd = new OpenFileDialog
-                {
-                    FileName = "bankAccounts.dbi",
-                    DefaultExt = ".dbi",
-                    Title = "خواندن فایل حسابهای بانکی",
-                    Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
-                    FilterIndex = 2
-                };
+                var path = ExtensionsFramework.GetOpenFilePath("BankAccounts");
 
-                var result = ofd.ShowDialog();
-                if (result.HasValue && result.Value)
-                {
-                    SourceTable = await ofd.FileName.ReadAsync();
-                    SetGridData();
-                }
+                SourceTable = await path.ReadJsonFileAsync();
+                SetGridData();
 
                 //
                 dgvMain.SetHeaderNames();
