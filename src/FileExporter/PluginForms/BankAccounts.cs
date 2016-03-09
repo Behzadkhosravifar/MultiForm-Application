@@ -26,7 +26,7 @@ namespace FileExporter.PluginForms
                     await
                         Program.SaleMarkaz.SqlConn.QueryAsync("Select * from bank_register");
 
-                SourceTable = source.ToDataTable();
+                SourceTable = source.DynamicsArrayToDataTable();
                 SetGridData();
                 //
                 dgvMain.SetHeaderNames();

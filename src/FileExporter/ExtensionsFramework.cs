@@ -26,7 +26,7 @@ namespace FileExporter
         /// </summary>
         /// <param name="items"></param>
         /// <returns>A DataTable with the copied dynamic data.</returns>
-        public static DataTable ToDataTable(this IEnumerable<dynamic> items)
+        public static DataTable DynamicsArrayToDataTable(this IEnumerable<dynamic> items)
         {
             var data = items.ToArray();
             if (!data.Any()) return null;
