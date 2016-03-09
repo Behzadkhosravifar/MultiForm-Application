@@ -6,35 +6,19 @@ namespace FileExporter
 {
     public class BaseForm : System.Windows.Forms.Form, IVisualForm, IDisposable
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
         protected DataTable SourceTable;
         protected readonly object SyncObj = new object();
 
-        public BaseForm()
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+
             Application.Idle += OnLoaded;
         }
 
         protected virtual void OnLoaded(object sender, EventArgs e)
         {
             Application.Idle -= OnLoaded;
-        }
-
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            this.SuspendLayout();
-            // 
-            // BaseForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Font = new System.Drawing.Font("B Nazanin", 9F);
-            this.Name = "BaseForm";
-            this.ResumeLayout(false);
         }
 
 
@@ -66,11 +50,6 @@ namespace FileExporter
         {
             if (disposing)
             {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-
                 // Dispose stuff here
                 if (SourceTable != null)
                 {

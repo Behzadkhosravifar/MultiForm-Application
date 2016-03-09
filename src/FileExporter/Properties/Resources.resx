@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bank_acc_key" xml:space="preserve">
+    <value>شماره حسابداری بانک</value>
+  </data>
+  <data name="bank_des" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="bank_hesab" xml:space="preserve">
+    <value>شماره حساب بانکی</value>
+  </data>
+  <data name="bank_id" xml:space="preserve">
+    <value>شناسه بانک</value>
+  </data>
+  <data name="bank_name" xml:space="preserve">
+    <value>نام بانک</value>
+  </data>
+  <data name="bank_shobe_code" xml:space="preserve">
+    <value>کد شعبه</value>
+  </data>
   <data name="cdcode" xml:space="preserve">
     <value>کد محصول قدیم</value>
   </data>
@@ -140,6 +158,9 @@
   </data>
   <data name="unitid" xml:space="preserve">
     <value>شناسه</value>
+  </data>
+  <data name="vahed_key" xml:space="preserve">
+    <value>شناسه واحد</value>
   </data>
   <data name="whcode" xml:space="preserve">
     <value>کد انبار</value>

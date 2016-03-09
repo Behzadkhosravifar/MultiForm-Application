@@ -61,6 +61,60 @@ namespace FileExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شماره حسابداری بانک.
+        /// </summary>
+        internal static string bank_acc_key {
+            get {
+                return ResourceManager.GetString("bank_acc_key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to توضیحات.
+        /// </summary>
+        internal static string bank_des {
+            get {
+                return ResourceManager.GetString("bank_des", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شماره حساب بانکی.
+        /// </summary>
+        internal static string bank_hesab {
+            get {
+                return ResourceManager.GetString("bank_hesab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شناسه بانک.
+        /// </summary>
+        internal static string bank_id {
+            get {
+                return ResourceManager.GetString("bank_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام بانک.
+        /// </summary>
+        internal static string bank_name {
+            get {
+                return ResourceManager.GetString("bank_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کد شعبه.
+        /// </summary>
+        internal static string bank_shobe_code {
+            get {
+                return ResourceManager.GetString("bank_shobe_code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کد محصول قدیم.
         /// </summary>
         internal static string cdcode {
@@ -129,6 +183,15 @@ namespace FileExporter.Properties {
         internal static string unitid {
             get {
                 return ResourceManager.GetString("unitid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to شناسه واحد.
+        /// </summary>
+        internal static string vahed_key {
+            get {
+                return ResourceManager.GetString("vahed_key", resourceCulture);
             }
         }
         

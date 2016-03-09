@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using AdoManager;
+using ErrorControlSystem.DbConnectionManager;
+using ConnectionManager = AdoManager.ConnectionManager;
 
 namespace FileExporter
 {
     static class Program
     {
-        public static ConnectionManager Sale;
-        public static ConnectionManager SaleCore;
-        public static ConnectionManager OldSale;
+        public static ConnectionManager Sale, SaleCore, SaleMarkaz, UsersManagements;
 
         /// <summary>
         /// The main entry point for the application.
@@ -25,8 +24,9 @@ namespace FileExporter
             // Set Database Connection from [app.config]
             SetConnections();
 
-            var formsTypes = GetAllForms().ToArray();
+            ErrorControlSystem.ExceptionHandler.Engine.Start(new Connection(UsersManagements.ConnectionString));
 
+            var formsTypes = GetAllForms().ToArray();
             Application.Run(GetRequestedForm(args, formsTypes) ?? (formsTypes.Count() > 1 ? new MainForm() : (BaseForm)Activator.CreateInstance(formsTypes[0])));
         }
 
@@ -55,7 +55,8 @@ namespace FileExporter
 
             Sale = ConnectionManager.Find("Sale");
             SaleCore = ConnectionManager.Find("SaleCore");
-            OldSale = ConnectionManager.Find("OldSale");
+            SaleMarkaz = ConnectionManager.Find("SaleMarkaz");
+            UsersManagements = ConnectionManager.Find("UM");
             // ---------------------------------------------------------------------------------------------------------------
         }
 

@@ -15,17 +15,13 @@ namespace FileExporter.PluginForms
 {
     public partial class InWay : BaseForm
     {
-        
         private bool _inProcess = false;
-
-
-
+        
         public InWay()
         {
             InitializeComponent();
         }
-
-
+        
         private async void btnShow_Click(object sender, System.EventArgs e)
         {
             try
