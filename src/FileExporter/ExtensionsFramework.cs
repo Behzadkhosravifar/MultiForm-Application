@@ -53,7 +53,7 @@ namespace FileExporter
 
             Microsoft.Win32.SaveFileDialog sfd = new SaveFileDialog
             {
-                FileName = string.Format("{0}_{1}_{2}.jsn", name, GetPersianDate(), id),
+                FileName = string.Format("{0}_{1}_{2}.jsn", name, GetPersianDate(), id ?? Math.Abs(DateTime.Now.GetHashCode()).ToString()),
                 DefaultExt = ".jsn",
                 Title = "ذخیره فایل",
                 Filter = "Text files|*.txt|Json Serialization|*.jsn|All files (*.*)|*.*",
@@ -67,7 +67,7 @@ namespace FileExporter
                     await sw.WriteAsync(data);
             }
         }
-        
+
         public static async Task<DataTable> ReadAsync(this string path)
         {
             Char[] buffer;

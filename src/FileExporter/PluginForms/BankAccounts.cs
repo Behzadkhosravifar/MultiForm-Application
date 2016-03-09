@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Windows.Forms;
 using BlurMessageBox;
 using Dapper;
@@ -56,7 +55,7 @@ namespace FileExporter.PluginForms
             {
                 var data = JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
 
-                await data.SaveAsync("bankAccounts", DateTime.Now.GetHashCode().ToString(), true);
+                await data.SaveAsync("bankAccounts", null, true);
             }
             catch (Exception ex)
             {
