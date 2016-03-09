@@ -16,12 +16,12 @@ namespace FileExporter.PluginForms
     public partial class InWay : BaseForm
     {
         private bool _inProcess = false;
-        
+
         public InWay()
         {
             InitializeComponent();
         }
-        
+
         private async void btnShow_Click(object sender, System.EventArgs e)
         {
             try
@@ -72,7 +72,7 @@ namespace FileExporter.PluginForms
 
                 var data = JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
 
-                await SaveAsync(data, true);
+                await data.SaveAsync("inWay", txtInvoiceId.Value, true);
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@ namespace FileExporter.PluginForms
                 var result = ofd.ShowDialog();
                 if (result.HasValue && result.Value)
                 {
-                    SourceTable = await ReadAsync(ofd.FileName);
+                    SourceTable = await ofd.FileName.ReadAsync();
                     SetGridData();
                 }
 
@@ -141,63 +141,6 @@ namespace FileExporter.PluginForms
             dgvMain.DataSource = SourceTable;
             var count = SourceTable.Rows.Count;
             gbInWays.Text = string.Format("جزئیات توراهی (تعداد: {0})", count);
-        }
-
-        private async Task SaveAsync(string data, bool isEncrypt = false)
-        {
-            if (isEncrypt)
-            {
-                data = "#" + data.Encrypt();
-            }
-
-
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-
-                FileName = string.Format("inWay_{0}_{1}.jsn", GetPersianDate(), txtInvoiceId.Value),
-                DefaultExt = ".jsn",
-                Title = "ذخیره فایل توراهی",
-                Filter = "Text files|*.txt|Json Serialization|*.jsn|All files (*.*)|*.*",
-                FilterIndex = 2
-            };
-
-            var result = sfd.ShowDialog();
-            if (result.HasValue && result.Value)
-            {
-                using (StreamWriter sw = new StreamWriter(sfd.FileName))
-                    await sw.WriteAsync(data);
-            }
-        }
-        public async Task<DataTable> ReadAsync(string path)
-        {
-            Char[] buffer;
-            using (StreamReader sr = new StreamReader(path))
-            {
-                buffer = new Char[(int)sr.BaseStream.Length];
-                await sr.ReadAsync(buffer, 0, (int)sr.BaseStream.Length);
-            }
-
-            var data = new String(buffer);
-
-            if (data.StartsWith("#")) // encrypted data?
-            {
-                data = data.TrimStart('#').Decrypt();
-            }
-
-            var dt = (DataTable)JsonConvert.DeserializeObject(data, typeof(DataTable));
-
-            return dt;
-        }
-
-        public string GetPersianDate()
-        {
-            DateTime date = DateTime.Now;
-            var calendar = new PersianCalendar();
-            var persianDate = new DateTime(calendar.GetYear(date), calendar.GetMonth(date), calendar.GetDayOfMonth(date));
-
-            var result = persianDate.ToString("yyyy.MM.dd");
-
-            return result;
         }
     }
 }

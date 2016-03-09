@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using ErrorControlSystem.DbConnectionManager;
 using ConnectionManager = AdoManager.ConnectionManager;
 
 namespace FileExporter
@@ -24,7 +23,7 @@ namespace FileExporter
             // Set Database Connection from [app.config]
             SetConnections();
 
-            ErrorControlSystem.ExceptionHandler.Engine.Start(new Connection(UsersManagements.ConnectionString));
+            //ErrorControlSystem.ExceptionHandler.Engine.Start(new Connection(UsersManagements.ConnectionString));
 
             var formsTypes = GetAllForms().ToArray();
             Application.Run(GetRequestedForm(args, formsTypes) ?? (formsTypes.Count() > 1 ? new MainForm() : (BaseForm)Activator.CreateInstance(formsTypes[0])));

@@ -65,6 +65,7 @@
             this.btnOpenJson.TabIndex = 3;
             this.btnOpenJson.Text = "خواندن فایل";
             this.btnOpenJson.UseVisualStyleBackColor = true;
+            this.btnOpenJson.Click += new System.EventHandler(this.btnOpenJson_Click);
             // 
             // btnExport
             // 
@@ -78,6 +79,7 @@
             this.btnExport.TabIndex = 2;
             this.btnExport.Text = "خروج فایل";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // panelMain
             // 
