@@ -95,10 +95,10 @@ namespace FileExporter.PluginForms
 
                 var ofd = new OpenFileDialog
                 {
-                    FileName = "inWay.jsn",
-                    DefaultExt = ".jsn",
+                    FileName = "inWay.dbi",
+                    DefaultExt = ".dbi",
                     Title = "خواندن فایل توراهی",
-                    Filter = "Text files|*.txt|Json Serialization|*.jsn|All files (*.*)|*.*",
+                    Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
                     FilterIndex = 2
                 };
 

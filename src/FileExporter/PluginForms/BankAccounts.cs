@@ -69,10 +69,10 @@ namespace FileExporter.PluginForms
             {
                 var ofd = new OpenFileDialog
                 {
-                    FileName = "bankAccounts.jsn",
-                    DefaultExt = ".jsn",
+                    FileName = "bankAccounts.dbi",
+                    DefaultExt = ".dbi",
                     Title = "خواندن فایل حسابهای بانکی",
-                    Filter = "Text files|*.txt|Json Serialization|*.jsn|All files (*.*)|*.*",
+                    Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
                     FilterIndex = 2
                 };
 
