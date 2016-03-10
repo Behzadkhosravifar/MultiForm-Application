@@ -132,6 +132,9 @@
   <data name="bank_name" xml:space="preserve">
     <value>نام بانک</value>
   </data>
+  <data name="bank_new_name" xml:space="preserve">
+    <value>نام جدید بانک</value>
+  </data>
   <data name="bank_shobe_code" xml:space="preserve">
     <value>کد شعبه</value>
   </data>

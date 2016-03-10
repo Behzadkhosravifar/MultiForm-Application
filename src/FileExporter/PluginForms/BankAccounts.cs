@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using BlurMessageBox;
 using Dapper;
-using Newtonsoft.Json;
 
 namespace FileExporter.PluginForms
 {
@@ -52,7 +51,7 @@ namespace FileExporter.PluginForms
         {
             try
             {
-                var data = JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
+                var data = SourceTable.ToXml("BankAccountsTable"); // JsonConvert.SerializeObject(SourceTable, Formatting.Indented);
 
                 var path = ExtensionsFramework.GetSaveFilePath("BankAccounts", null);
 

@@ -106,6 +106,15 @@ namespace FileExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نام جدید بانک.
+        /// </summary>
+        internal static string bank_new_name {
+            get {
+                return ResourceManager.GetString("bank_new_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کد شعبه.
         /// </summary>
         internal static string bank_shobe_code {

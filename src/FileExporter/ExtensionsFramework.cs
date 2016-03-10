@@ -133,5 +133,15 @@ namespace FileExporter
         {
             return sentence.Aggregate("", (current, ch) => current + (char.IsLower(ch) ? ch.ToString() : " " + ch));
         }
+
+        public static string ToXml(this DataTable dt, string name)
+        {
+            using (var s = new System.IO.MemoryStream())
+            {
+                dt.TableName = name;
+                dt.WriteXml(s);
+                return System.Text.Encoding.UTF8.GetString(s.ToArray());
+            }
+        }
     }
 }
