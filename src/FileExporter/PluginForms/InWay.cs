@@ -34,7 +34,7 @@ namespace FileExporter.PluginForms
                 var source =
                     await
                         Program.SaleCore.SqlConn.ExecuteReaderAsync("sp_GetOldSaleInvoiceDetails", parameters,
-                            commandType: CommandType.StoredProcedure);
+                            commandType: CommandType.StoredProcedure, transaction: null, commandTimeout: 1000);
                 SourceTable = new DataTable();
                 SourceTable.Load(source);
                 SetGridData();
