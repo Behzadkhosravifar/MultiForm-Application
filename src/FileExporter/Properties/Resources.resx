@@ -153,6 +153,9 @@
   <data name="productcode" xml:space="preserve">
     <value>کد محصول</value>
   </data>
+  <data name="qrcodecontent" xml:space="preserve">
+    <value>محتوای بار کد</value>
+  </data>
   <data name="qty" xml:space="preserve">
     <value>تعداد</value>
   </data>

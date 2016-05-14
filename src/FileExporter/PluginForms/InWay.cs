@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using BlurMessageBox;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace FileExporter.PluginForms
 {
@@ -90,8 +91,24 @@ namespace FileExporter.PluginForms
                 }
 
                 var path = ExtensionsFramework.GetOpenFilePath("InWay");
-                
-                SourceTable = await path.ReadJsonFileAsync();
+
+                var opFile = new FileInfo(path);
+
+                if (opFile.Extension == ".xls")
+                {
+                    SourceTable = await path.ReadXlsFileAsync();
+                }
+                else if (opFile.Extension == ".dbi")
+                {
+                    SourceTable = await path.ReadJsonFileAsync();
+                }
+                else
+                {
+                    MsgBox.Show("فایل مورد نظر نا معتبر میباشد!");
+                    return;
+                }
+
+
                 SetGridData();
 
                 //

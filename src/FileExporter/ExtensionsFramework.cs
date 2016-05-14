@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdoManager;
 using Newtonsoft.Json;
+using System.Data.OleDb;
 
 namespace FileExporter
 {
@@ -69,7 +70,7 @@ namespace FileExporter
                 FileName = string.Format("{0}_{1}_id.dbi", name, GetPersianDate()),
                 DefaultExt = ".dbi",
                 Title = string.Format("Read {0} file", name.SplitWords()),
-                Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
+                Filter = "Text files|*.txt|Excel files|*.xls|Json Serialization|*.dbi|All files (*.*)|*.*",
                 FilterIndex = 2
             };
 
@@ -114,6 +115,28 @@ namespace FileExporter
             }
 
             var dt = (DataTable)JsonConvert.DeserializeObject(data, typeof(DataTable));
+
+            return dt;
+        }
+
+        public static async Task<DataTable> ReadXlsFileAsync(this string path)
+        {
+            if (string.IsNullOrEmpty(path)) return new DataTable();
+
+            var dt = new DataTable();
+
+            string con =
+                  $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};" +
+                  @"Extended Properties='Excel 8.0;HDR=Yes;'";
+            using (OleDbConnection connection = new OleDbConnection(con))
+            {
+                await connection.OpenAsync();
+                OleDbCommand command = new OleDbCommand("select * from [Sheet1$]", connection);
+                using (OleDbDataReader dr = command.ExecuteReader())
+                {
+                    dt.Load(dr);
+                }
+            }
 
             return dt;
         }

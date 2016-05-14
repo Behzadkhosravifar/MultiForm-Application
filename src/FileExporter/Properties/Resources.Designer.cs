@@ -169,6 +169,15 @@ namespace FileExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to محتوای بار کد.
+        /// </summary>
+        internal static string qrcodecontent {
+            get {
+                return ResourceManager.GetString("qrcodecontent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تعداد.
         /// </summary>
         internal static string qty {
