@@ -143,11 +143,13 @@ namespace FileExporter
 
         public static string GetPersianDate()
         {
-            var date = DateTime.Now;
-            var calendar = new PersianCalendar();
-            var persianDate = string.Format("{0}.{1}.{2}", calendar.GetYear(date), calendar.GetMonth(date), calendar.GetDayOfMonth(date));
+            return GetPersianDate(DateTime.Now);
+        }
 
-            return persianDate;
+        public static string GetPersianDate(this DateTime date)
+        {
+            PersianCalendar jc = new PersianCalendar();
+            return string.Format("{0:0000}.{1:00}.{2:00}", jc.GetYear(date), jc.GetMonth(date), jc.GetDayOfMonth(date));
         }
 
         public static string SplitWords(this string sentence)
