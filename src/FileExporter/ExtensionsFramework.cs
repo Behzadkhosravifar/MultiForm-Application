@@ -145,11 +145,9 @@ namespace FileExporter
         {
             var date = DateTime.Now;
             var calendar = new PersianCalendar();
-            var persianDate = new DateTime(calendar.GetYear(date), calendar.GetMonth(date), calendar.GetDayOfMonth(date));
+            var persianDate = string.Format("{0}.{1}.{2}", calendar.GetYear(date), calendar.GetMonth(date), calendar.GetDayOfMonth(date));
 
-            var result = persianDate.ToString("yyyy.MM.dd");
-
-            return result;
+            return persianDate;
         }
 
         public static string SplitWords(this string sentence)
