@@ -48,9 +48,9 @@ namespace FileExporter
         {
             SaveFileDialog sfd = new SaveFileDialog
             {
-                FileName = string.Format("{0}_{1}_{2}.dbi", name, GetPersianDate(), id ?? Math.Abs(DateTime.Now.GetHashCode()).ToString()),
+                FileName = $"{name}_{GetPersianDate()}_{id ?? Math.Abs(DateTime.Now.GetHashCode()).ToString()}.dbi",
                 DefaultExt = ".dbi",
-                Title = string.Format("Save {0} file", name.SplitWords()),
+                Title = $"Save {name.SplitWords()} file",
                 Filter = "Text files|*.txt|Json Serialization|*.dbi|All files (*.*)|*.*",
                 FilterIndex = 2
             };
@@ -67,9 +67,9 @@ namespace FileExporter
         {
             var ofd = new OpenFileDialog
             {
-                FileName = string.Format("{0}_{1}_id.dbi", name, GetPersianDate()),
+                FileName = $"{name}_{GetPersianDate()}_id.dbi",
                 DefaultExt = ".dbi",
-                Title = string.Format("Read {0} file", name.SplitWords()),
+                Title = $"Read {name.SplitWords()} file",
                 Filter = "Text files|*.txt|Excel files|*.xls|Json Serialization|*.dbi|All files (*.*)|*.*",
                 FilterIndex = 2
             };
@@ -148,8 +148,15 @@ namespace FileExporter
 
         public static string GetPersianDate(this DateTime date)
         {
-            PersianCalendar jc = new PersianCalendar();
-            return string.Format("{0:0000}.{1:00}.{2:00}", jc.GetYear(date), jc.GetMonth(date), jc.GetDayOfMonth(date));
+            var jc = new PersianCalendar();
+            return $"{jc.GetYear(date):0000}.{jc.GetMonth(date):00}.{jc.GetDayOfMonth(date):00}";
+        }
+
+        public static long GetPersianDateNumber(this DateTime date)
+        {
+            var jc = new PersianCalendar();
+            return
+                long.Parse($"{jc.GetYear(date):0000}{jc.GetMonth(date):00}{jc.GetDayOfMonth(date):00}{jc.GetHour(date):00}{jc.GetMinute(date):00}{jc.GetSecond(date):00}{jc.GetMilliseconds(date):000}");
         }
 
         public static string SplitWords(this string sentence)

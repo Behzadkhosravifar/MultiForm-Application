@@ -23,7 +23,7 @@ namespace FileExporter.PluginForms
                 //
                 var source =
                     await
-                        Program.SaleMarkaz.SqlConn.QueryAsync("Select * from bank_register");
+                        Connections.SaleMarkaz.SqlConn.QueryAsync("Select * from bank_register");
 
                 SourceTable = source.DynamicsArrayToDataTable();
                 SetGridData();
@@ -44,7 +44,7 @@ namespace FileExporter.PluginForms
         {
             dgvMain.DataSource = SourceTable;
             var count = SourceTable.Rows.Count;
-            gbInWays.Text = string.Format("حسابهای بانکی (تعداد: {0})", count);
+            gbInWays.Text = $"حسابهای بانکی (تعداد: {count})";
         }
 
         private async void btnExport_Click(object sender, EventArgs e)

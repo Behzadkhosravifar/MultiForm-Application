@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using ConnectionManager = AdoManager.ConnectionManager;
 
 namespace FileExporter
 {
     static class Program
     {
-        public static ConnectionManager Sale, SaleCore, SaleMarkaz, UsersManagements;
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,9 +15,6 @@ namespace FileExporter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // Set Database Connection from [app.config]
-            SetConnections();
 
             //ErrorControlSystem.ExceptionHandler.Engine.Start(new Connection(UsersManagements.ConnectionString));
 
@@ -42,21 +35,6 @@ namespace FileExporter
             }
 
             return null;
-        }
-
-        private static void SetConnections()
-        {
-            // Set Database Connection from [app.config] ---------------------------------------------------------------------
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName) + ".config";
-            var data = File.ReadAllText(path);
-            ConnectionManager.LoadFromXml(data);
-            ConnectionManager.SetToDefaultConnection("SaleCore"); // local
-
-            Sale = ConnectionManager.Find("Sale");
-            SaleCore = ConnectionManager.Find("SaleCore");
-            SaleMarkaz = ConnectionManager.Find("SaleMarkaz");
-            UsersManagements = ConnectionManager.Find("UM");
-            // ---------------------------------------------------------------------------------------------------------------
         }
 
         public static IEnumerable<Type> GetAllForms()

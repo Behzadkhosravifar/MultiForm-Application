@@ -30,11 +30,11 @@ namespace FileExporter.PluginForms
 
                 if (!ValidateInputs()) return;
 
-                var parameters = new { OldInvoiceId = txtInvoiceId.Value, InvoiceTypeID = 4, RunDate = "2" };
+                var parameters = new { OldInvoiceId = txtInvoiceId.Value, InvoiceTypeID = 4, RunDate = DateTime.Now.GetPersianDateNumber() };
                 //
                 var source =
                     await
-                        Program.SaleCore.SqlConn.ExecuteReaderAsync("sp_GetOldSaleInvoiceDetails", parameters,
+                        Connections.SaleCore.SqlConn.ExecuteReaderAsync("sp_GetOldSaleInvoiceDetails", parameters,
                             commandType: CommandType.StoredProcedure, transaction: null, commandTimeout: 1000);
                 SourceTable = new DataTable();
                 SourceTable.Load(source);
@@ -127,22 +127,18 @@ namespace FileExporter.PluginForms
 
         private bool ValidateInputs()
         {
-            if (string.IsNullOrEmpty(txtInvoiceId.Value))
-            {
-                MsgBox.Show("لطفا شماره فاکتور را وارد فرمائید", "شماره فاکتور خالی", Buttons.OK, Icons.Error,
-                    AnimateStyle.SlideDown);
-                txtInvoiceId.Focus();
+            if (!string.IsNullOrEmpty(txtInvoiceId.Value)) return true;
 
-                return false;
-            }
+            MsgBox.Show("لطفا شماره فاکتور را وارد فرمائید", "شماره فاکتور خالی", Buttons.OK, Icons.Error, AnimateStyle.SlideDown);
+            txtInvoiceId.Focus();
 
-            return true;
+            return false;
         }
         private void SetGridData()
         {
             dgvMain.DataSource = SourceTable;
             var count = SourceTable.Rows.Count;
-            gbInWays.Text = string.Format("جزئیات توراهی (تعداد: {0})", count);
+            gbInWays.Text = $"جزئیات توراهی (تعداد: {count})";
         }
     }
 }
