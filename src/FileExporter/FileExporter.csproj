@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdoManager, Version=1.1.53.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AdoManager.1.1.53\lib\net45\AdoManager.dll</HintPath>
+    <Reference Include="AdoManager, Version=1.1.80.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdoManager.1.1.80\lib\net45\AdoManager.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
